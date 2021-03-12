@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,9 +28,9 @@ public class SignUp extends JFrame implements ActionListener{
     
     JButton createButton, backButton;
     
-    JTextField textField, nameField, answerField;
+    JTextField textField, nameField, answerField, passwordField;
     
-    JPasswordField passwordField;
+    //JPasswordField passwordField;
     
     Choice box;
 
@@ -145,11 +146,22 @@ public class SignUp extends JFrame implements ActionListener{
         if(e.getSource() == createButton){
             String username = textField.getText();
             String name = nameField.getText();
-            String password = passwordField.toString();
+            String password = passwordField.getText();
             String answer = answerField.getText();
             String security = box.getSelectedItem();
             
             String query = "insert into account values('"+username+"', '"+name+"', '"+password+"', '"+security+"', '"+answer+"')";
+            
+            try {
+                
+                Conn connect = new Conn();
+                connect.statement.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Account created Successfully!");
+                this.setVisible(false);
+                new Login().setVisible(true);
+                
+            } catch (Exception mysql) {
+            }
             
         }else if(e.getSource() == backButton){
             this.setVisible(false);

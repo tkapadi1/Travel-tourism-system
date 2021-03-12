@@ -20,7 +20,8 @@ public class Conn {
         
         try {
             
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
             connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/ttms","root","Soneji777&T");
             
             statement = connect.createStatement();
@@ -29,9 +30,5 @@ public class Conn {
         }
         
     }
-    
-    
-    public static void main(String[] args) {
-        
-    }
+   
 }
