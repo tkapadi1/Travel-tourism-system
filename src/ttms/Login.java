@@ -6,6 +6,8 @@ package ttms;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +22,9 @@ import javax.swing.border.LineBorder;
  *
  * @author kappa
  */
-public class Login extends JFrame{
+public class Login extends JFrame implements ActionListener{
+    
+    JButton loginButton, signupButton, helpButton;
 
     public Login() {
         setSize(700, 300);
@@ -74,18 +78,20 @@ public class Login extends JFrame{
 	jp2.add(passwordField);
         
         
-        JButton loginButton = new JButton("Login");     
+        loginButton = new JButton("Login");     
         loginButton.setBorder(null);
 	loginButton.setForeground(Color.WHITE);
 	loginButton.setBackground(new Color(133, 193, 233));
 	loginButton.setBounds(40, 165, 140, 30);
+        loginButton.addActionListener(this);
 	jp2.add(loginButton);
 		
-        JButton signupButton = new JButton("SignUp");	
+        signupButton = new JButton("SignUp");	
         signupButton.setBorder(new LineBorder(new Color(133, 193, 233)));
 	signupButton.setForeground(new Color(133, 193, 233));
 	signupButton.setBackground(Color.WHITE);
 	signupButton.setBounds(200, 165, 140, 30);
+        signupButton.addActionListener(this);
 	jp2.add(signupButton);
         
         
@@ -96,12 +102,13 @@ public class Login extends JFrame{
 	help.setBounds(40, 210, 140, 30);
 	jp2.add(help);
         
-        JButton helpButton = new JButton("Forget Password");	
+        helpButton = new JButton("Forget Password");	
         helpButton.setBorder(new LineBorder(new Color(133, 193, 233)));;
 	helpButton.setForeground(Color.RED);
 	helpButton.setBackground(Color.WHITE);
         helpButton.setFont(new Font("SAN_SERIF", Font.PLAIN, 12));
 	helpButton.setBounds(200, 210, 140, 30);
+        helpButton.addActionListener(this);
 	jp2.add(helpButton);
         
         
@@ -113,5 +120,17 @@ public class Login extends JFrame{
     
     public static void main(String[] args) {
         new Login();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == loginButton){
+            
+        }else if(e.getSource() == signupButton){
+            this.setVisible(false);
+            new SignUp().setVisible(true);
+        }else if(e.getSource() == helpButton){
+            
+        }
     }
 }
