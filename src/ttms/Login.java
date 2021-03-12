@@ -130,7 +130,8 @@ public class Login extends JFrame implements ActionListener{
             this.setVisible(false);
             new SignUp().setVisible(true);
         }else if(e.getSource() == helpButton){
-            
+            this.setVisible(false);
+            new ForgetPassword().setVisible(true);
         }
     }
 }
