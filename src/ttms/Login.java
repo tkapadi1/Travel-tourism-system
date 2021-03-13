@@ -6,6 +6,7 @@ package ttms;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -17,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +28,8 @@ import javax.swing.border.LineBorder;
 public class Login extends JFrame implements ActionListener{
     
     JButton loginButton, signupButton, helpButton;
+    
+    JTextField textField, passwordField;
 
     public Login() {
         setSize(700, 300);
@@ -67,12 +72,12 @@ public class Login extends JFrame implements ActionListener{
 	password.setBounds(40, 80, 95, 30);
 	jp2.add(password);
 
-	JTextField textField = new JTextField();
+	textField = new JTextField();
         textField.setBorder(null);
 	textField.setBounds(40, 45, 300, 30);
 	jp2.add(textField);
 	
-	JPasswordField passwordField = new JPasswordField();
+	passwordField = new JPasswordField();
         password.setBorder(BorderFactory.createEmptyBorder());
 	passwordField.setBounds(40, 115, 300, 30);
 	jp2.add(passwordField);
@@ -124,7 +129,26 @@ public class Login extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        Conn connect = new Conn();
+        String username = textField.getText();
+        String password = passwordField.getText();
+        
         if(e.getSource() == loginButton){
+            String sql = "select * from account where username = '"+username+"' AND password = '"+password+"'";
+            
+            try {
+                
+                ResultSet allData = connect.statement.executeQuery(sql);
+                if(allData.next()){
+                    this.setVisible(false);
+                    new Loading(username).setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Wrong Username OR Password! Try Again.");
+                }
+                
+            } catch (Exception s) {
+            }
             
         }else if(e.getSource() == signupButton){
             this.setVisible(false);
