@@ -84,6 +84,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b4.setForeground(Color.WHITE);
         b4.setBounds(0, 150, 300, 50);
         b4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b4.addActionListener(this);
         p2.add(b4);
         
         b5 = new JButton("Check package");
@@ -194,6 +195,8 @@ public class DashBoard extends JFrame implements ActionListener{
             new AddCustomer(username).setVisible(true);
         }else if(e.getSource() == b2){
             new UpdateDetails(username).setVisible(true);
+        }else if(e.getSource() == b3){
+            new ViewCustomer(username).setVisible(true);
         }
         
         if(e.getSource() == b13){
