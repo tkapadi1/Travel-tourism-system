@@ -1,5 +1,5 @@
 /*
- * Adding Customer details to the Database.
+ * Upadte Customer Details.
  */
 package ttms;
 
@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,17 +17,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import java.sql.ResultSet;
 
 /**
  *
  * @author kappa
  */
-public class AddCustomer extends JFrame implements ActionListener {
+public class UpdateDetails extends JFrame implements ActionListener{
+    
+    JTextField textField, numberField, nameField, countryField, addressField, phoneField, mailField, choiceField;
 
-    JTextField textField, numberField, nameField, countryField, addressField, phoneField, mailField;
-
-    JButton add, back;
+    JButton update, back;
 
     Choice c1;
 
@@ -34,7 +34,7 @@ public class AddCustomer extends JFrame implements ActionListener {
     
     String user = null;
 
-    public AddCustomer(String usrname) {
+    public UpdateDetails(String usrname) {
         
         user = usrname;        
 
@@ -43,8 +43,7 @@ public class AddCustomer extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.WHITE);
         
         
-        
-        JLabel heading = new JLabel("ADD CUSTOMER DETAILS");
+        JLabel heading = new JLabel("UPDATE CUSTOMER DETAILS");
         heading.setBounds(50, 10, 300, 25);
         heading.setLayout(null);
         heading.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -68,6 +67,11 @@ public class AddCustomer extends JFrame implements ActionListener {
         id.setLayout(null);
         id.setBounds(25, 85, 100, 25);
         add(id);
+        
+        choiceField = new JTextField();
+        choiceField.setLayout(null);
+        choiceField.setBounds(175, 85, 100, 25);
+        add(choiceField);
 
         c1 = new Choice();
         c1.setFont(new Font("Tohama", Font.BOLD, 12));
@@ -75,7 +79,7 @@ public class AddCustomer extends JFrame implements ActionListener {
         c1.add("Driver License");
         c1.add("Birth Certificate");
         c1.add("State ID");
-        c1.setBounds(175, 85, 200, 25);
+        c1.setBounds(275, 85, 100, 25);
         add(c1);
         
         
@@ -167,8 +171,8 @@ public class AddCustomer extends JFrame implements ActionListener {
         
         
 
-        ImageIcon image = new ImageIcon(ClassLoader.getSystemResource("ttms/icons/newcustomer.jpg"));
-        Image toCon = image.getImage().getScaledInstance(340, 521, Image.SCALE_DEFAULT);
+        ImageIcon image = new ImageIcon(ClassLoader.getSystemResource("ttms/icons/update.png"));
+        Image toCon = image.getImage().getScaledInstance(200, 350, Image.SCALE_DEFAULT);
         ImageIcon newImage = new ImageIcon(toCon);
         JLabel i1 = new JLabel(newImage);
         i1.setBounds(425, 15, 200, 450);
@@ -177,13 +181,13 @@ public class AddCustomer extends JFrame implements ActionListener {
         
         
 
-        add = new JButton("ADD");
-        add.setLayout(null);
-        add.setBackground(Color.BLACK);
-        add.setForeground(Color.WHITE);
-        add.setBounds(150, 415, 100, 25);
-        add.addActionListener(this);
-        add(add);
+        update = new JButton("UPDATE");
+        update.setLayout(null);
+        update.setBackground(Color.BLACK);
+        update.setForeground(Color.WHITE);
+        update.setBounds(150, 415, 100, 25);
+        update.addActionListener(this);
+        add(update);
 
         back = new JButton("BACK");
         back.setLayout(null);
@@ -197,29 +201,42 @@ public class AddCustomer extends JFrame implements ActionListener {
         
         //Adding the username and name field to the text boxes.
         try {
-            String sql = "select * from account where username = '"+user+"'";
+            String sql = "select * from customer where username = '"+user+"'";
             
             Conn connect = new Conn();
             ResultSet rs = connect.statement.executeQuery(sql);
             while(rs.next()){
                 textField.setText(rs.getString("username"));
+                choiceField.setText(rs.getString("id"));       
+                numberField.setText(rs.getString("number"));
                 nameField.setText(rs.getString("name"));
+                String radio = rs.getString("gender");
+                if("Male".equals(radio)){
+                    maleRadio.setSelected(true);
+                }else{
+                    femaleRadio.setSelected(true);
+                }
+                countryField.setText(rs.getString("country"));
+                addressField.setText(rs.getString("address"));
+                phoneField.setText(rs.getString("phone"));
+                mailField.setText(rs.getString("email"));
+                
             }
             
         } catch (Exception l) {
             l.printStackTrace();
         }
-
+        
     }
-
+    
     public static void main(String[] args) {
-        new AddCustomer("").setVisible(true);
+        new UpdateDetails("").setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == add) {
+        
+        if (e.getSource() == update) {
             String username = textField.getText();
             String id = (String) c1.getSelectedItem();
             String number = numberField.getText();
@@ -235,13 +252,13 @@ public class AddCustomer extends JFrame implements ActionListener {
             String phone = phoneField.getText();
             String email = mailField.getText();
 
-            String sql = "insert into customer values ('" + username + "', '" + id + "', '" + number + "', '" + name + "', '" + gender + "', '" + country + "', '" + address + "', '" + phone + "', '" + email + "')";
+            String sql = "update customer set username = '" + username + "', id = '" + id + "', number = '" + number + "', name = '" + name + "', gender = '" + gender + "', country = '" + country + "', address = '" + address + "', phone ='" + phone + "', email = '" + email + "'";
 
             try {
                 Conn connect = new Conn();
                 connect.statement.executeUpdate(sql);
 
-                JOptionPane.showMessageDialog(null, "Customer added successfully!");
+                JOptionPane.showMessageDialog(null, "Customer Updated successfully!");
                 this.setVisible(false);
 
             } catch (Exception s) {
@@ -252,6 +269,7 @@ public class AddCustomer extends JFrame implements ActionListener {
             this.setVisible(false);
             
         }
+        
     }
-
+    
 }
