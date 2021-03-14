@@ -22,9 +22,14 @@ import javax.swing.JPanel;
  */
 public class DashBoard extends JFrame implements ActionListener{
     
-    JButton b13,b14;
+    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15;
+    
+    String username = null;
 
-    public DashBoard() {
+    public DashBoard(String user) {
+        
+        username = user;
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
         
@@ -50,84 +55,85 @@ public class DashBoard extends JFrame implements ActionListener{
         p2.setBackground(new Color(0, 0, 103));
         add(p2);
         
-        JButton b1 = new JButton("Add Personal Details");
+        b1 = new JButton("Add Personal Details");
         b1.setBackground(new Color(0, 0, 102));
         b1.setForeground(Color.WHITE);
         b1.setBounds(0, 0, 300, 50);
         b1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b1.addActionListener(this);
         p2.add(b1);
         
-        JButton b2 = new JButton("Update Personal Details");
+        b2 = new JButton("Update Personal Details");
         b2.setBackground(new Color(0, 0, 102));
         b2.setForeground(Color.WHITE);
         b2.setBounds(0, 50, 300, 50);
         b2.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b2);
         
-        JButton b3 = new JButton("View Personal Details");
+        b3 = new JButton("View Personal Details");
         b3.setBackground(new Color(0, 0, 102));
         b3.setForeground(Color.WHITE);
         b3.setBounds(0, 100, 300, 50);
         b3.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b3);
         
-        JButton b4 = new JButton("Delete Personal Details");
+        b4 = new JButton("Delete Personal Details");
         b4.setBackground(new Color(0, 0, 102));
         b4.setForeground(Color.WHITE);
         b4.setBounds(0, 150, 300, 50);
         b4.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b4);
         
-        JButton b5 = new JButton("Check package");
+        b5 = new JButton("Check package");
         b5.setBackground(new Color(0, 0, 102));
         b5.setForeground(Color.WHITE);
         b5.setBounds(0, 200, 300, 50);
         b5.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b5);
         
-        JButton b6 = new JButton("Book Package");
+        b6 = new JButton("Book Package");
         b6.setBackground(new Color(0, 0, 102));
         b6.setForeground(Color.WHITE);
         b6.setBounds(0, 250, 300, 50);
         b6.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b6);
         
-        JButton b7 = new JButton("View Package");
+        b7 = new JButton("View Package");
         b7.setBackground(new Color(0, 0, 102));
         b7.setForeground(Color.WHITE);
         b7.setBounds(0, 300, 300, 50);
         b7.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b7);
         
-        JButton b8 = new JButton("View Hotels");
+        b8 = new JButton("View Hotels");
         b8.setBackground(new Color(0, 0, 102));
         b8.setForeground(Color.WHITE);
         b8.setBounds(0, 350, 300, 50);
         b8.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b8);
         
-        JButton b9 = new JButton("Book Hotels");
+        b9 = new JButton("Book Hotels");
         b9.setBackground(new Color(0, 0, 102));
         b9.setForeground(Color.WHITE);
         b9.setBounds(0, 400, 300, 50);
         b9.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b9);
         
-        JButton b10 = new JButton("View Booked Details");
+        b10 = new JButton("View Booked Details");
         b10.setBackground(new Color(0, 0, 102));
         b10.setForeground(Color.WHITE);
         b10.setBounds(0, 450, 300, 50);
         b10.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b10);
         
-        JButton b11 = new JButton("Destinatons");
+        b11 = new JButton("Destinatons");
         b11.setBackground(new Color(0, 0, 102));
         b11.setForeground(Color.WHITE);
         b11.setBounds(0, 500, 300, 50);
         b11.setFont(new Font("Tahoma", Font.PLAIN, 20));
         p2.add(b11);
         
-        JButton b12 = new JButton("Payment");
+        b12 = new JButton("Payment");
         b12.setBackground(new Color(0, 0, 102));
         b12.setForeground(Color.WHITE);
         b12.setBounds(0, 550, 300, 50);
@@ -150,7 +156,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b14.addActionListener(this);
         p2.add(b14);
         
-        JButton b15 = new JButton("About");
+        b15 = new JButton("About");
         b15.setBackground(new Color(0, 0, 102));
         b15.setForeground(Color.WHITE);
         b15.setBounds(0, 692, 300, 42);
@@ -176,11 +182,15 @@ public class DashBoard extends JFrame implements ActionListener{
     }
     
     public static void main(String[] args) {
-        new DashBoard().setVisible(true);
+        new DashBoard("").setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(e.getSource() == b1){
+            new AddCustomer(username).setVisible(true);
+        }
         
         if(e.getSource() == b13){
             try {

@@ -83,7 +83,7 @@ public class Loading extends JFrame implements Runnable{
                 }else{
                     i = 101;
                     setVisible(false);
-                    new DashBoard().setVisible(true);
+                    new DashBoard(user).setVisible(true);
                 }
                 t.sleep(30);
             }
