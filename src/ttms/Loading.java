@@ -75,7 +75,7 @@ public class Loading extends JFrame implements Runnable{
     public void run() {
         
         try {
-            for (int i = 1; i < 101; i++) {
+            for (int i = 1; i <= 101; i++) {
                 int max = progressBar.getMaximum();
                 int current = progressBar.getValue();
                 if(current < max){
@@ -83,7 +83,7 @@ public class Loading extends JFrame implements Runnable{
                 }else{
                     i = 101;
                     setVisible(false);
-                    //Home
+                    new DashBoard().setVisible(true);
                 }
                 t.sleep(30);
             }
