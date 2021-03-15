@@ -100,6 +100,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b6.setForeground(Color.WHITE);
         b6.setBounds(0, 250, 300, 50);
         b6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b6.addActionListener(this);
         p2.add(b6);
         
         b7 = new JButton("View Package");
@@ -107,6 +108,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b7.setForeground(Color.WHITE);
         b7.setBounds(0, 300, 300, 50);
         b7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b7.addActionListener(this);
         p2.add(b7);
         
         b8 = new JButton("View Hotels");
@@ -200,6 +202,8 @@ public class DashBoard extends JFrame implements ActionListener{
             new ViewCustomer(username).setVisible(true);
         }else if(e.getSource() == b5){
             new CheckPackage().setVisible(true);
+        }else if(e.getSource() == b6){
+            new BookPackage(username).setVisible(true);
         }
         
         if(e.getSource() == b13){
