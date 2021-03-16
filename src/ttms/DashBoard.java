@@ -204,6 +204,8 @@ public class DashBoard extends JFrame implements ActionListener{
             new CheckPackage().setVisible(true);
         }else if(e.getSource() == b6){
             new BookPackage(username).setVisible(true);
+        }else if(e.getSource() == b7){
+            new ViewPackage(username).setVisible(true);
         }
         
         if(e.getSource() == b13){
