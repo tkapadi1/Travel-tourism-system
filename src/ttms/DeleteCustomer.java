@@ -1,9 +1,8 @@
 /*
- * View Customer Details
+ * Delete Customer Details from the DataBase and Starting the App again.
  */
 package ttms;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -14,26 +13,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author kappa
  */
-public class ViewCustomer extends JFrame implements ActionListener{
+public class DeleteCustomer extends JFrame implements ActionListener{
     
     JLabel textField, numberField, nameField, countryField, addressField, phoneField, mailField, choiceField, radioField;
     
-    JButton back;
+    JButton back, delete;
     
     String u, i, no, nm, c, a, p, m, g;
     
     String user = null;
 
-    public ViewCustomer(String usrname) {
-        
-        user = usrname;
-        
+    public DeleteCustomer(String user) {        
         
         //Adding the username and name field to the text boxes.
         try {
@@ -64,7 +60,7 @@ public class ViewCustomer extends JFrame implements ActionListener{
         
         
         JLabel heading = new JLabel("CUSTOMER DETAILS");
-        heading.setBounds(240, 10, 300, 25);
+        heading.setBounds(200, 10, 300, 25);
         heading.setLayout(null);
         heading.setFont(new Font("Tahoma", Font.BOLD, 20));
         add(heading);
@@ -188,15 +184,23 @@ public class ViewCustomer extends JFrame implements ActionListener{
         
         
 
-        ImageIcon image = new ImageIcon(ClassLoader.getSystemResource("ttms/icons/update.png"));
-        Image toCon = image.getImage().getScaledInstance(200, 350, Image.SCALE_DEFAULT);
+        ImageIcon image = new ImageIcon(ClassLoader.getSystemResource("ttms/icons/delete.png"));
+        Image toCon = image.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         ImageIcon newImage = new ImageIcon(toCon);
         JLabel i1 = new JLabel(newImage);
-        i1.setBounds(425, 15, 200, 450);
+        i1.setBounds(425, 80, 200, 300);
         i1.setLayout(null);
         add(i1);
         
         
+
+        delete = new JButton("DELETE");
+        delete.setLayout(null);
+        delete.setBackground(Color.BLACK);
+        delete.setForeground(Color.WHITE);
+        delete.setBounds(150, 415, 100, 25);
+        delete.addActionListener(this);
+        add(delete);
 
         back = new JButton("BACK");
         back.setLayout(null);
@@ -206,18 +210,44 @@ public class ViewCustomer extends JFrame implements ActionListener{
         back.addActionListener(this);
         add(back);
         
-        
     }
     
     public static void main(String[] args) {
-        new ViewCustomer("").setVisible(true);
+        new DeleteCustomer("tkapadi1").setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if(e.getSource() == back){
             this.setVisible(false);
+        }else if(e.getSource() == delete){
+            
+            try {
+                
+                Conn connect = new Conn();
+                
+                //String sql = "delete from "+table[i]+" where username = '"+u+"'";
+                String[] table = new String[]{"account", 
+                    "bookhotel", 
+                    "bookpackage", 
+                    "customer"
+                };
+                
+                for (int j = 0; j < 4; j++) {
+                    connect.statement.executeUpdate("delete from "+table[j]+" where username = '"+u+"'");
+                }
+                
+                JOptionPane.showMessageDialog(null, "User Account deleted Successfully from the Databeses!");
+                
+                System.exit(0);
+                
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+            
         }
+        
     }
-
+    
 }

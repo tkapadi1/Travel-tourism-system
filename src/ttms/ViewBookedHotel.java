@@ -3,7 +3,6 @@
  */
 package ttms;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -14,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -34,7 +32,7 @@ public class ViewBookedHotel extends JFrame implements ActionListener{
         
         
         
-        JLabel title = new JLabel("BOOK HOTEL");
+        JLabel title = new JLabel("BOOKED HOTEL DETAIL");
         title.setBounds(250, 5, 300, 30);
         title.setFont(new Font("Yu Mincho", Font.PLAIN, 25));
         add(title);

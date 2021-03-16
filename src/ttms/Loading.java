@@ -56,10 +56,10 @@ public class Loading extends JFrame implements Runnable{
         add(welcome);
         
         
-        JLabel usrnm = new JLabel(user);
-        usrnm.setBounds(260, 230, 300, 32);
-        usrnm.setFont(new Font("Tahoma", Font.BOLD, 30));
-        usrnm.setForeground(Color.GRAY);
+        JLabel usrnm = new JLabel(user+"...");
+        usrnm.setBounds(17, 330, 150, 25);
+        usrnm.setFont(new Font("Tahoma", Font.BOLD, 18));
+        usrnm.setForeground(Color.RED);
         add(usrnm);
         
         

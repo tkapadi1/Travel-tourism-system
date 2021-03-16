@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class DashBoard extends JFrame implements ActionListener{
     
-    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15;
+    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
     
     String username = null;
 
@@ -46,6 +47,15 @@ public class DashBoard extends JFrame implements ActionListener{
         dash.setForeground(Color.WHITE);
         dash.setFont(new Font("Tahoma", Font.BOLD, 30));
         p1.add(dash);
+        
+        
+        
+        b16 = new JButton("LOG OUT");
+        b16.setForeground(new Color(0, 0, 103));
+        b16.setBounds(1385, 18, 125, 30);
+        b16.setFont(new Font("Tahoma", Font.BOLD, 20));
+        b16.addActionListener(this);
+        p1.add(b16);
 
        
         
@@ -174,6 +184,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b15.setFont(new Font("Tahoma", Font.PLAIN, 20));
         b15.addActionListener(this);
         p2.add(b15);
+
         
         
         
@@ -206,6 +217,8 @@ public class DashBoard extends JFrame implements ActionListener{
             new UpdateDetails(username).setVisible(true);
         }else if(e.getSource() == b3){
             new ViewCustomer(username).setVisible(true);
+        }else if(e.getSource() == b4){
+            new DeleteCustomer(username).setVisible(true);
         }else if(e.getSource() == b5){
             new CheckPackage().setVisible(true);
         }else if(e.getSource() == b6){
@@ -235,6 +248,10 @@ public class DashBoard extends JFrame implements ActionListener{
             }
         }else if(e.getSource() == b15){
             new About().setVisible(true);
+        }else if(e.getSource() == b16){
+            JOptionPane.showMessageDialog(null, "Logged Out Successfully!");
+            this.setVisible(false);
+            new Login().setVisible(true);
         }
         
     }

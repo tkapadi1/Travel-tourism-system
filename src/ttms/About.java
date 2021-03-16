@@ -33,7 +33,7 @@ public class About extends JFrame implements ActionListener{
         heading.setForeground(Color.red);
         add(heading);
         
-        s = "                                    About Projects          \n  "
+        s = "                                                        About Projects          \n  "
                 + "\nThe objective of the Travel and Tourism Management System"
                 + "project is to develop a system that automates the processes "
                 + "and activities of a travel and the purpose is to design a "
