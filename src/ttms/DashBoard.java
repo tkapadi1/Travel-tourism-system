@@ -116,6 +116,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b8.setForeground(Color.WHITE);
         b8.setBounds(0, 350, 300, 50);
         b8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b8.addActionListener(this);
         p2.add(b8);
         
         b9 = new JButton("Book Hotels");
@@ -123,6 +124,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b9.setForeground(Color.WHITE);
         b9.setBounds(0, 400, 300, 50);
         b9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b9.addActionListener(this);
         p2.add(b9);
         
         b10 = new JButton("View Booked Details");
@@ -130,6 +132,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b10.setForeground(Color.WHITE);
         b10.setBounds(0, 450, 300, 50);
         b10.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b10.addActionListener(this);
         p2.add(b10);
         
         b11 = new JButton("Destinatons");
@@ -137,6 +140,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b11.setForeground(Color.WHITE);
         b11.setBounds(0, 500, 300, 50);
         b11.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b11.addActionListener(this);
         p2.add(b11);
         
         b12 = new JButton("Payment");
@@ -144,6 +148,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b12.setForeground(Color.WHITE);
         b12.setBounds(0, 550, 300, 50);
         b12.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b12.addActionListener(this);
         p2.add(b12);
         
         b13 = new JButton("Calculator");
@@ -167,6 +172,7 @@ public class DashBoard extends JFrame implements ActionListener{
         b15.setForeground(Color.WHITE);
         b15.setBounds(0, 692, 300, 42);
         b15.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        b15.addActionListener(this);
         p2.add(b15);
         
         
@@ -206,9 +212,17 @@ public class DashBoard extends JFrame implements ActionListener{
             new BookPackage(username).setVisible(true);
         }else if(e.getSource() == b7){
             new ViewPackage(username).setVisible(true);
-        }
-        
-        if(e.getSource() == b13){
+        }else if(e.getSource() == b8){
+            new CheckHotels().setVisible(true);
+        }else if(e.getSource() == b9){
+            new BookHotel(username).setVisible(true);
+        }else if(e.getSource() == b10){
+            new ViewBookedHotel(username).setVisible(true);
+        }else if(e.getSource() == b11){
+            new Destinations().setVisible(true);
+        }else if(e.getSource() == b12){
+            new Payment().setVisible(true);
+        }else if(e.getSource() == b13){
             try {
                 Runtime.getRuntime().exec("calc.exe");
             } catch (Exception c) {
@@ -219,6 +233,8 @@ public class DashBoard extends JFrame implements ActionListener{
                 Runtime.getRuntime().exec("notepad.exe");
             } catch (Exception c) {
             }
+        }else if(e.getSource() == b15){
+            new About().setVisible(true);
         }
         
     }
