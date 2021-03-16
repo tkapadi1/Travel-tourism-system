@@ -13,7 +13,7 @@ This Project contains an executable Jar File that will allow you to run applicat
 
 The directory for it is TTMS/dist/TTMS.jar
 
-This project is Built in seperate parts; distinctly 25 in all. History which could be found in commits.
+This project is Built in seperate parts; distinctly 21 in all. History which could be found in commits.
 
 ___________________________________________________________________________________________________________________________
 
